@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:sc="http://xmlns.jcp.org/jsf/composite/sccomp">
+
+    <h:form>
+        <p:messages autoUpdate="true" showDetail="true"></p:messages>
+        <p:fieldset legend="Gerenciar Animais">
+            <sc:toolbarCrud crudBean="#{animalBean}">   
+            </sc:toolbarCrud>
+            <p:panelGrid columns="2" rendered="#{animalBean.busca == false}">
+                <h:outputLabel value="Nome"></h:outputLabel>
+                <p:inputText value="#{carroBean.entidade.nome}"></p:inputText>
+            </p:panelGrid>
+            <p:dataTable value="#{animalBean.entidades}" var="animal" rendered="#{animalBean.busca == true}">
+                <p:column>
+                    <p:commandButton value="Editar" action="#{animalBean.editar(animal)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Deletar" action="#{animalBean.deletar(animal)}" update="@form"></p:commandButton>
+                </p:column>
+                <p:column headerText="Nome" sortBy="#{carro.nome}">
+                    <h:outputText value="#{carro.nome}"></h:outputText>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+</ui:decorate>
+

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:sc="http://xmlns.jcp.org/jsf/composite/sccomp"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:form>
+        <p:messages autoUpdate="true" showDetail="true"></p:messages>
+        <p:fieldset legend="Gerenciar Fichas">
+            <sc:toolbarCrud crudBean="#{fichaBean}"></sc:toolbarCrud>
+            <p:panelGrid columns="2" rendered="#{fichaBean.busca == false}">
+                <h:outputLabel value="dtCadastro"></h:outputLabel>
+                    <p:calendar value="#{fichaBean.entidade.dtCadastro}" ></p:calendar>
+                <h:outputLabel value="Observacao"></h:outputLabel>
+                    <p:inputText value="#{fichaBean.entidade.observacao}"></p:inputText>
+                <h:outputText value="Status"></h:outputText>
+                <h:selectOneRadio>
+                    <f:selectItem value="#{fichaBean.entidade.status}" itemLabel="ativo"></f:selectItem>
+                    <f:selectItem value="#{fichaBean.entidade.status}" itemLabel="inativo"></f:selectItem>
+                </h:selectOneRadio>  
+            </p:panelGrid>
+            <p:dataTable value="#{fichaBean.entidades}" var="ficha" rendered="#{fichaBean.busca == true}">
+                <p:column>
+                    <p:commandButton value="Editar" action="#{fichaBean.editar(ficha)}" update="@form"></p:commandButton>
+                    <p:commandButton value="Deletar" action="#{usuarioBean.deletar(ficha)}" update="@form"></p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </h:form>
+
+</ui:decorate>
+

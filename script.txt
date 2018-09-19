@@ -1,0 +1,31 @@
+CREATE DATABASE teste;
+
+CREATE SCHEMA IF NOT EXISTS `sistema-teste` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
+USE `sistema-teste` ;
+
+CREATE TABLE animais( 
+id int(11) NOT NULL AUTO_INCREMENT,
+nome varchar(45) NOT NULL, 
+PRIMARY KEY (id), 
+UNIQUE KEY id_UNIQUE (id), 
+KEY fk_animais_1_idx (IdFicha), 
+CONSTRAINT fk_animais_1 FOREIGN KEY (IdFicha) REFERENCES fichas(id) ON DELETE CASCADE ON UPDATE CASCADE ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1
+);
+
+CREATE TABLE fichas (
+id int(11) NOT NULL AUTO_INCREMENT, 
+dtCadastro Date NOT NULL, 
+observacao varchar(45) NOT NULL,
+status varchar(45) NOR NULL, 
+PRIMARY KEY (id), UNIQUE KEY id_UNIQUE (id), 
+);
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO animais(id,nome,idx) VALUES (1,'cachorro',1);
+INSERT INTO animais(id,nome,idx) VALUES (2,'gato',2);
+INSERT INTO animais(id,nome,idx) VALUES (3,'tatu',3);
+
+INSERT INTO fichas(id,dtCadastro,observacao,status) VALUES (1,01/01/2010'ficha de cachorro','ativa');
+INSERT INTO fichas(id,dtCadastro,observacao,status) VALUES (2,20/10/2015'ficha de gato','ativa');
+INSERT INTO fichas(id,dtCadastro,observacao,status) VALUES (3,15/11/2018'ficha de tatu','inativa');

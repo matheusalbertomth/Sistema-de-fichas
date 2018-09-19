@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+.header {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+body {
+  margin: 0;
+}
+
+.column {
+    float: left;
+    padding: 10px;
+}
+
+.column.side {
+    width: 25%;
+
+}
+
+.column.middle {
+    width: 50%;
+}
+
+.footer {
+    background-color: #f1f1f1;
+    padding: 20px;
+    text-align: center;
+}
+
